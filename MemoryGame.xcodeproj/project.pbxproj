@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7029BB619012BFB00E1A0BF /* GameScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D7029BB519012BFB00E1A0BF /* GameScreen.m */; };
 		D7AFD2921900EF960069501E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AFD2911900EF960069501E /* Foundation.framework */; };
 		D7AFD2941900EF960069501E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AFD2931900EF960069501E /* CoreGraphics.framework */; };
 		D7AFD2961900EF960069501E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AFD2951900EF960069501E /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D7029BB419012BFB00E1A0BF /* GameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScreen.h; sourceTree = "<group>"; };
+		D7029BB519012BFB00E1A0BF /* GameScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScreen.m; sourceTree = "<group>"; };
 		D7AFD28E1900EF960069501E /* MemoryGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7AFD2911900EF960069501E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7AFD2931900EF960069501E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,11 +117,13 @@
 			children = (
 				D7AFD2A01900EF960069501E /* AppDelegate.h */,
 				D7AFD2A11900EF960069501E /* AppDelegate.m */,
+				D7AFD2C01900F26F0069501E /* HomeScreen.h */,
+				D7AFD2C11900F26F0069501E /* HomeScreen.m */,
 				D7AFD2A31900EF960069501E /* Images.xcassets */,
 				D7AFD2C41900FE7D0069501E /* images */,
 				D7AFD2981900EF960069501E /* Supporting Files */,
-				D7AFD2C01900F26F0069501E /* HomeScreen.h */,
-				D7AFD2C11900F26F0069501E /* HomeScreen.m */,
+				D7029BB419012BFB00E1A0BF /* GameScreen.h */,
+				D7029BB519012BFB00E1A0BF /* GameScreen.m */,
 			);
 			path = MemoryGame;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7AFD2A21900EF960069501E /* AppDelegate.m in Sources */,
+				D7029BB619012BFB00E1A0BF /* GameScreen.m in Sources */,
 				D7AFD2C21900F26F0069501E /* HomeScreen.m in Sources */,
 				D7AFD29E1900EF960069501E /* main.m in Sources */,
 			);
@@ -459,6 +465,7 @@
 				D7AFD2BC1900EF960069501E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7AFD2BD1900EF960069501E /* Build configuration list for PBXNativeTarget "MemoryGameTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +474,7 @@
 				D7AFD2BF1900EF960069501E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

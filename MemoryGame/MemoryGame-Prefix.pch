@@ -14,6 +14,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "HomeScreen.h"
+    #import "GameScreen.h"
 #endif
 
 #define DISPLAY_W 320
