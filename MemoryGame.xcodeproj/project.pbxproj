@@ -19,6 +19,7 @@
 		D7AFD2AD1900EF960069501E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AFD2951900EF960069501E /* UIKit.framework */; };
 		D7AFD2B51900EF960069501E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7AFD2B31900EF960069501E /* InfoPlist.strings */; };
 		D7AFD2B71900EF960069501E /* MemoryGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AFD2B61900EF960069501E /* MemoryGameTests.m */; };
+		D7AFD2C21900F26F0069501E /* HomeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AFD2C11900F26F0069501E /* HomeScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		D7AFD2B21900EF960069501E /* MemoryGameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MemoryGameTests-Info.plist"; sourceTree = "<group>"; };
 		D7AFD2B41900EF960069501E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D7AFD2B61900EF960069501E /* MemoryGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryGameTests.m; sourceTree = "<group>"; };
+		D7AFD2C01900F26F0069501E /* HomeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreen.h; sourceTree = "<group>"; };
+		D7AFD2C11900F26F0069501E /* HomeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreen.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				D7AFD2A11900EF960069501E /* AppDelegate.m */,
 				D7AFD2A31900EF960069501E /* Images.xcassets */,
 				D7AFD2981900EF960069501E /* Supporting Files */,
+				D7AFD2C01900F26F0069501E /* HomeScreen.h */,
+				D7AFD2C11900F26F0069501E /* HomeScreen.m */,
 			);
 			path = MemoryGame;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7AFD2A21900EF960069501E /* AppDelegate.m in Sources */,
+				D7AFD2C21900F26F0069501E /* HomeScreen.m in Sources */,
 				D7AFD29E1900EF960069501E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
