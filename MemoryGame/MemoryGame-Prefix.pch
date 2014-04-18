@@ -13,4 +13,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "HomeScreen.h"
 #endif
+
+#define DISPLAY_W 320
+#define DISPLAY_H 568
+#define STATUS_BAR_H 20
+#define TITLE_H 44

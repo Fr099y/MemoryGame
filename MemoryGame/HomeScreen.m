@@ -19,8 +19,18 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self initMyView];
     }
     return self;
+}
+-(void)initMyView
+{
+    UIView *backgroundView=[[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, DISPLAY_W, DISPLAY_H-STATUS_BAR_H)];
+    UIView *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, DISPLAY_W, TITLE_H)];
+    titleView.backgroundColor=[UIColor lightGrayColor];
+    [backgroundView addSubview:titleView];
+    [self.view addSubview:backgroundView];
+    
 }
 
 - (void)viewDidLoad
