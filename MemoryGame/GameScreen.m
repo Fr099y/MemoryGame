@@ -13,9 +13,15 @@
     UILabel *timerLabel;
     UILabel *scoreLabel;
     UIView *gameView;
+    UIView *finishView;
+    UILabel *maxScoreLabel;
+    UILabel *playerScore;
+    UIButton *playAgain;
     NSMutableArray *objectTagArray;
     NSMutableArray *objectImageArray;
+//    NSMutableArray *objectImageArray;
     UIButton *selectedButton;
+    UIView *selectedView;
     int shuffleLoopCount;
     bool isObjectSelected;
     int lastSelectedTag;
@@ -24,6 +30,11 @@
     int totalAviableObject;
     int tryCount;
     bool isGameRunning;
+    int default_time;
+    NSString *pattern_images[15];
+    NSTimer *timer;
+//    int index_array[30];
+//    UIView *view_array[30];
 }
 
 @end
@@ -32,7 +43,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    time=60;
+    default_time=60;
+    time=default_time;
     score=0;
     lastSelectedTag=0;
     isObjectSelected=false;
@@ -40,6 +52,7 @@
     isGameRunning=true;
     tryCount=0;
     shuffleLoopCount=500;
+//    index_array={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -49,7 +62,6 @@
 }
 -(void)initMyView
 {
-//    objectTagArray={{1,1,2,2,3},{3,4,4,5,5}, {6,6,7,7,8},{8,9,9,10,10},{11,11,12,12,13},{13,14,14,15,15}};
     NSMutableArray *subTagArray1=[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:1]
                            ,[NSNumber numberWithInt:2],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3], nil];
     NSMutableArray *subTagArray2=[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:4]
@@ -65,19 +77,19 @@
     
     objectTagArray=[[NSMutableArray alloc] initWithObjects:subTagArray1, subTagArray2, subTagArray3, subTagArray4, subTagArray5, subTagArray6, nil];
     
-    NSMutableArray *subImageArray1=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"], nil];
+    objectImageArray=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_01.png"],[NSString stringWithFormat:@"shape_02.png"],[NSString stringWithFormat:@"shape_03.png"],[NSString stringWithFormat:@"shape_04.png"],[NSString stringWithFormat:@"shape_05.png"], [NSString stringWithFormat:@"shape_06.png"], [NSString stringWithFormat:@"shape_07.png"], [NSString stringWithFormat:@"shape_08.png"], [NSString stringWithFormat:@"shape_09.png"], [NSString stringWithFormat:@"shape_10.png"], [NSString stringWithFormat:@"shape_11.png"], [NSString stringWithFormat:@"shape_12.png"], [NSString stringWithFormat:@"shape_13.png"], [NSString stringWithFormat:@"shape_14.png"], [NSString stringWithFormat:@"shape_15.png"], nil];
     
-    NSMutableArray *subImageArray2=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"], nil];
-    
-    NSMutableArray *subImageArray3=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"], nil];
-    
-    NSMutableArray *subImageArray4=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"], nil];
-    
-    NSMutableArray *subImageArray5=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"], nil];
-    
-    NSMutableArray *subImageArray6=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"],[NSString stringWithFormat:@"image"], nil];
-    
-    objectImageArray=[[NSMutableArray alloc] initWithObjects:subImageArray1, subImageArray2, subImageArray3, subImageArray4, subImageArray5, subImageArray6, nil];
+//    NSMutableArray *subImageArray2=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_03.png"],[NSString stringWithFormat:@"shape_04.png"],[NSString stringWithFormat:@"shape_04.png"],[NSString stringWithFormat:@"shape_05.png"],[NSString stringWithFormat:@"shape_05.png"], nil];
+//    
+//    NSMutableArray *subImageArray3=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_06.png"],[NSString stringWithFormat:@"shape_06.png"],[NSString stringWithFormat:@"shape_07.png"],[NSString stringWithFormat:@"shape_07.png"],[NSString stringWithFormat:@"shape_08.png"], nil];
+//    
+//    NSMutableArray *subImageArray4=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_08.png"],[NSString stringWithFormat:@"shape_09.png"],[NSString stringWithFormat:@"shape_09.png"],[NSString stringWithFormat:@"shape_10.png"],[NSString stringWithFormat:@"shape_10.png"], nil];
+//    
+//    NSMutableArray *subImageArray5=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_11.png"],[NSString stringWithFormat:@"shape_11.png"],[NSString stringWithFormat:@"shape_12.png"],[NSString stringWithFormat:@"shape_12.png"],[NSString stringWithFormat:@"shape_13.png"], nil];
+//    
+//    NSMutableArray *subImageArray6=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_13.png"],[NSString stringWithFormat:@"shape_14.png"],[NSString stringWithFormat:@"shape_14.png"],[NSString stringWithFormat:@"shape_15.png"],[NSString stringWithFormat:@"shape_15.png"], nil];
+//    
+//    objectImageArray=[[NSMutableArray alloc] initWithObjects:subImageArray1, subImageArray2, subImageArray3, subImageArray4, subImageArray5, subImageArray6, nil];
     
     UIView *backgroundView=[[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, DISPLAY_W, DISPLAY_H-STATUS_BAR_H)];
     backgroundView.backgroundColor=[UIColor whiteColor];
@@ -108,6 +120,26 @@
     gameView.backgroundColor=[UIColor darkGrayColor];
     
     
+    finishView=[[UIView alloc] initWithFrame:gameView.frame];
+    finishView.backgroundColor=[UIColor lightGrayColor];
+    
+    maxScoreLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 40, DISPLAY_W, 50)];
+    maxScoreLabel.text=[NSString stringWithFormat:@"Max score = %i", score];
+    maxScoreLabel.textAlignment=NSTextAlignmentCenter;
+    playAgain=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    playAgain.frame=CGRectMake(0, 160, DISPLAY_W, 50);
+    [playAgain setTitle:@"Play again" forState:UIControlStateNormal];
+    [playAgain addTarget:self action:@selector(playAgain:) forControlEvents:UIControlEventTouchUpInside];
+    
+    playerScore=[[UILabel alloc] initWithFrame:CGRectMake(0, 100, DISPLAY_W, 50)];
+    playerScore.text=@"";
+    playerScore.textAlignment=NSTextAlignmentCenter;
+    
+    [finishView addSubview:playerScore];
+    [finishView addSubview:maxScoreLabel];
+    [finishView addSubview:playAgain];
+    
+    
     [backgroundView addSubview:gameView];
     [backgroundView addSubview:scoreLabel];
     [backgroundView addSubview:timerLabel];
@@ -123,32 +155,89 @@
     
     for (int i=0; i<shuffleLoopCount; i++)
     {
-        int temp_i=rand()%5;
-        int temp_j=rand()%4;
+        int temp_i=arc4random()%6;
+        int temp_j=arc4random()%5;
         int tempTag=[[[objectTagArray objectAtIndex:temp_i] objectAtIndex:temp_j] integerValue];
-        int i=rand()%5;
-        int j=rand()%4;
+//        NSString *tempImage=[[[objectImageArray objectAtIndex:temp_i] objectAtIndex:temp_j] stringValue];
+        int i=rand()%6;
+        int j=rand()%5;
         int tempTag2=[[[objectTagArray objectAtIndex:i] objectAtIndex:j] integerValue];
+//        NSString *tempImage2=[[[objectImageArray objectAtIndex:i] objectAtIndex:j] stringValue];
+        
         [[objectTagArray objectAtIndex:temp_i] replaceObjectAtIndex:temp_j withObject:[NSNumber numberWithInt:tempTag2]];
         [[objectTagArray objectAtIndex:i] replaceObjectAtIndex:j withObject:[NSNumber numberWithInt:tempTag]];
+        
+//        [[objectImageArray objectAtIndex:temp_i] replaceObjectAtIndex:temp_j withObject:tempImage2];
+//        [[objectImageArray objectAtIndex:i] replaceObjectAtIndex:j withObject:tempImage];
     }
+}
+-(void)runTimer
+{
+    if(time==0)
+    {
+        [self finishGame];
+        [timer invalidate];
+    }
+    else
+    {
+        time-=1;
+        timerLabel.text=[NSString stringWithFormat:@"Time %i", time];
+    }
+
+}
+-(void)finishGame
+{
+    [[gameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    maxScoreLabel.text=[NSString stringWithFormat:@"Max score = %i", score];
+    playerScore.text=[NSString stringWithFormat:@"Your score = %i", score];
+    [timer invalidate];
+    isGameRunning=false;
+    isObjectSelected=false;
+    totalAviableObject=30;
+    timer=nil;
+    [UIView transitionFromView:gameView toView:finishView duration:0.5f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
+        
+    }];
+}
+-(void)playAgain:(UIButton*)sender
+{
+    score=0;
+    time=default_time;
+    timerLabel.text=[NSString stringWithFormat:@"Time %i", time];
+    scoreLabel.text=[NSString stringWithFormat:@"Score = %i", score];
+    isGameRunning=true;
+    [UIView transitionFromView:finishView toView:gameView duration:0.5f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
+        [self createGameViews];
+    }];
 }
 -(void)createGameViews
 {
+    
     [[gameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self createObjectTags];
     int shape_size=40;
     int between_space=20;
     int first_x=(DISPLAY_W-shape_size*5-between_space*4)/2;
     int first_y=40;
+    int tag_index=0;
+    UIImage *image=[UIImage imageNamed:@"pattern-background.png"];
     for (int i=0; i<6; i++) {
         for (int j=0; j<5; j++) {
+            UIView *container=[[UIView alloc] initWithFrame:CGRectMake(first_x+j*shape_size+j*between_space, first_y+i*shape_size+i*between_space, shape_size, shape_size)];
+//            view_array[tag_index]=container;
+            container.backgroundColor=[UIColor lightGrayColor];
+            container.tag=tag_index;
             UIButton *btn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-            btn.frame=CGRectMake(first_x+j*shape_size+j*between_space, first_y+i*shape_size+i*between_space, shape_size, shape_size);
-            [btn setTitle:[NSString stringWithFormat:@"%i-%i", i, j] forState:UIControlStateNormal];
+            btn.frame=CGRectMake(0, 0, shape_size, shape_size);
+//            [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateNormal];
+            [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateDisabled];
             btn.tag=[[[objectTagArray objectAtIndex:i] objectAtIndex:j] integerValue];
             [btn addTarget:self action:@selector(objectClicked:) forControlEvents:UIControlEventTouchUpInside];
-            [gameView addSubview:btn];
+            [btn setBackgroundImage:image forState:UIControlStateNormal];
+            
+            [container addSubview:btn];
+            [gameView addSubview:container];
+            tag_index++;
         }
         
     }
@@ -159,48 +248,67 @@
 }
 -(void)objectClicked:(UIButton*)sender
 {
-    if(isGameRunning)
+    if(timer==nil)
+        timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runTimer) userInfo:nil repeats:YES];
+    UIView *toView=[[UIView alloc] initWithFrame:sender.frame];
+    NSString *imageName=[objectImageArray objectAtIndex:[[sender titleForState:UIControlStateDisabled] integerValue]-1];
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:imageName] drawInRect:toView.frame];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    toView.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    [UIView transitionFromView:(UIView*)sender toView:toView duration:0.5f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished)
     {
-        if(isObjectSelected)
+        if(isGameRunning)
         {
-            isObjectSelected=false;
-            if(![selectedButton isEqual:sender])
+            if(isObjectSelected)
             {
-                if(lastSelectedTag==[sender tag])
+                isObjectSelected=false;
+                if(![selectedButton isEqual:sender])
                 {
-                    sender.hidden=YES;
-                    selectedButton.hidden=YES;
-                    totalAviableObject-=2;
-                    if(tryCount==1)
-                        score+=4;
-                    else
-                        score+=2;
-                    if(totalAviableObject==0)
+                    if(lastSelectedTag==[sender tag])
                     {
-                        isGameRunning=false;
-                        score+=2+time;
-                        NSLog(@"Game Finished");
+                        sender.superview.hidden=YES;
+                        selectedButton.superview.hidden=YES;
+                        totalAviableObject-=2;
+                        if(tryCount==1)
+                            score+=4;
+                        else
+                            score+=2;
+                        if(totalAviableObject==0)
+                        {
+                            isGameRunning=false;
+                            score+=2+time;
+                            [self finishGame];
+                            NSLog(@"Game Finished");
+                        }
+                        scoreLabel.text=[NSString stringWithFormat:@"Score = %i", score];
+                        tryCount=0;
+                        toView.hidden=YES;
+                        selectedView.hidden=YES;
                     }
-                    scoreLabel.text=[NSString stringWithFormat:@"Score = %i", score];
-                    tryCount=0;
+                    else
+                    {
+                        [UIView transitionFromView:selectedView toView:selectedButton duration:0.5f options:UIViewAnimationOptionTransitionFlipFromLeft completion:nil];
+                        
+                        [UIView transitionFromView:toView toView:sender duration:0.5f options:UIViewAnimationOptionTransitionFlipFromLeft completion:nil];
+                        tryCount+=1;
+                    }
                 }
-                else
-                {
-                    tryCount+=1;
-                }
-
+            }
+            else
+            {
+                lastSelectedTag=[sender tag];
+                isObjectSelected=true;
+                selectedButton=sender;
+                selectedView=toView;
+                tryCount+=1;
             }
         }
-        else
-        {
-            lastSelectedTag=[sender tag];
-            isObjectSelected=true;
-            selectedButton=sender;
-            tryCount+=1;
-            NSLog(@"%i", [sender tag]);
-        }
+    }];
     }
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
