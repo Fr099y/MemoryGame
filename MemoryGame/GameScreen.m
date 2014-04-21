@@ -19,7 +19,6 @@
     UIButton *playAgain;
     NSMutableArray *objectTagArray;
     NSMutableArray *objectImageArray;
-//    NSMutableArray *objectImageArray;
     UIButton *selectedButton;
     UIView *selectedView;
     int shuffleLoopCount;
@@ -31,10 +30,7 @@
     int tryCount;
     bool isGameRunning;
     int default_time;
-    NSString *pattern_images[15];
     NSTimer *timer;
-//    int index_array[30];
-//    UIView *view_array[30];
 }
 
 @end
@@ -52,7 +48,6 @@
     isGameRunning=true;
     tryCount=0;
     shuffleLoopCount=500;
-//    index_array={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -78,18 +73,6 @@
     objectTagArray=[[NSMutableArray alloc] initWithObjects:subTagArray1, subTagArray2, subTagArray3, subTagArray4, subTagArray5, subTagArray6, nil];
     
     objectImageArray=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_01.png"],[NSString stringWithFormat:@"shape_02.png"],[NSString stringWithFormat:@"shape_03.png"],[NSString stringWithFormat:@"shape_04.png"],[NSString stringWithFormat:@"shape_05.png"], [NSString stringWithFormat:@"shape_06.png"], [NSString stringWithFormat:@"shape_07.png"], [NSString stringWithFormat:@"shape_08.png"], [NSString stringWithFormat:@"shape_09.png"], [NSString stringWithFormat:@"shape_10.png"], [NSString stringWithFormat:@"shape_11.png"], [NSString stringWithFormat:@"shape_12.png"], [NSString stringWithFormat:@"shape_13.png"], [NSString stringWithFormat:@"shape_14.png"], [NSString stringWithFormat:@"shape_15.png"], nil];
-    
-//    NSMutableArray *subImageArray2=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_03.png"],[NSString stringWithFormat:@"shape_04.png"],[NSString stringWithFormat:@"shape_04.png"],[NSString stringWithFormat:@"shape_05.png"],[NSString stringWithFormat:@"shape_05.png"], nil];
-//    
-//    NSMutableArray *subImageArray3=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_06.png"],[NSString stringWithFormat:@"shape_06.png"],[NSString stringWithFormat:@"shape_07.png"],[NSString stringWithFormat:@"shape_07.png"],[NSString stringWithFormat:@"shape_08.png"], nil];
-//    
-//    NSMutableArray *subImageArray4=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_08.png"],[NSString stringWithFormat:@"shape_09.png"],[NSString stringWithFormat:@"shape_09.png"],[NSString stringWithFormat:@"shape_10.png"],[NSString stringWithFormat:@"shape_10.png"], nil];
-//    
-//    NSMutableArray *subImageArray5=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_11.png"],[NSString stringWithFormat:@"shape_11.png"],[NSString stringWithFormat:@"shape_12.png"],[NSString stringWithFormat:@"shape_12.png"],[NSString stringWithFormat:@"shape_13.png"], nil];
-//    
-//    NSMutableArray *subImageArray6=[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"shape_13.png"],[NSString stringWithFormat:@"shape_14.png"],[NSString stringWithFormat:@"shape_14.png"],[NSString stringWithFormat:@"shape_15.png"],[NSString stringWithFormat:@"shape_15.png"], nil];
-//    
-//    objectImageArray=[[NSMutableArray alloc] initWithObjects:subImageArray1, subImageArray2, subImageArray3, subImageArray4, subImageArray5, subImageArray6, nil];
     
     UIView *backgroundView=[[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, DISPLAY_W, DISPLAY_H-STATUS_BAR_H)];
     backgroundView.backgroundColor=[UIColor whiteColor];
@@ -158,17 +141,12 @@
         int temp_i=arc4random()%6;
         int temp_j=arc4random()%5;
         int tempTag=[[[objectTagArray objectAtIndex:temp_i] objectAtIndex:temp_j] integerValue];
-//        NSString *tempImage=[[[objectImageArray objectAtIndex:temp_i] objectAtIndex:temp_j] stringValue];
         int i=rand()%6;
         int j=rand()%5;
         int tempTag2=[[[objectTagArray objectAtIndex:i] objectAtIndex:j] integerValue];
-//        NSString *tempImage2=[[[objectImageArray objectAtIndex:i] objectAtIndex:j] stringValue];
         
         [[objectTagArray objectAtIndex:temp_i] replaceObjectAtIndex:temp_j withObject:[NSNumber numberWithInt:tempTag2]];
         [[objectTagArray objectAtIndex:i] replaceObjectAtIndex:j withObject:[NSNumber numberWithInt:tempTag]];
-        
-//        [[objectImageArray objectAtIndex:temp_i] replaceObjectAtIndex:temp_j withObject:tempImage2];
-//        [[objectImageArray objectAtIndex:i] replaceObjectAtIndex:j withObject:tempImage];
     }
 }
 -(void)runTimer
@@ -224,7 +202,6 @@
     for (int i=0; i<6; i++) {
         for (int j=0; j<5; j++) {
             UIView *container=[[UIView alloc] initWithFrame:CGRectMake(first_x+j*shape_size+j*between_space, first_y+i*shape_size+i*between_space, shape_size, shape_size)];
-//            view_array[tag_index]=container;
             container.backgroundColor=[UIColor lightGrayColor];
             container.tag=tag_index;
             UIButton *btn=[UIButton buttonWithType:UIButtonTypeRoundedRect];

@@ -153,11 +153,11 @@
 				D7AFD2A11900EF960069501E /* AppDelegate.m */,
 				D7AFD2C01900F26F0069501E /* HomeScreen.h */,
 				D7AFD2C11900F26F0069501E /* HomeScreen.m */,
+				D7029BB419012BFB00E1A0BF /* GameScreen.h */,
+				D7029BB519012BFB00E1A0BF /* GameScreen.m */,
 				D7AFD2A31900EF960069501E /* Images.xcassets */,
 				D7AFD2C41900FE7D0069501E /* images */,
 				D7AFD2981900EF960069501E /* Supporting Files */,
-				D7029BB419012BFB00E1A0BF /* GameScreen.h */,
-				D7029BB519012BFB00E1A0BF /* GameScreen.m */,
 			);
 			path = MemoryGame;
 			sourceTree = "<group>";
