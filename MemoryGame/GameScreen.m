@@ -83,19 +83,19 @@
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 7, DISPLAY_W, 30)];
     titleLabel.text=@"Memory";
     titleLabel.textAlignment=NSTextAlignmentCenter;
-    
+    titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:18];
 
     
     UIButton *backButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton setTitle:@"Буцах" forState:UIControlStateNormal];
     backButton.frame=CGRectMake(10, 7, 50, 30);
     [backButton addTarget:self action:@selector(backClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    timerLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, TITLE_H+10, 100, 30)];
-    timerLabel.text=[NSString stringWithFormat:@"Time %i", time];
+    timerLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, TITLE_H+10, DISPLAY_W, 30)];
+    timerLabel.text=[NSString stringWithFormat:@"Хугацаа: %i секунд", time];
     
     scoreLabel=[[UILabel alloc] initWithFrame:CGRectMake(DISPLAY_W-110, TITLE_H+10, 100, 30)];
-    scoreLabel.text=[NSString stringWithFormat:@"Score = %i", score];
+    scoreLabel.text=[NSString stringWithFormat:@"Оноо = %i", score];
     scoreLabel.textAlignment=NSTextAlignmentRight;
     
     
@@ -107,11 +107,11 @@
     finishView.backgroundColor=[UIColor lightGrayColor];
     
     maxScoreLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 40, DISPLAY_W, 50)];
-    maxScoreLabel.text=[NSString stringWithFormat:@"Max score = %i", score];
+    maxScoreLabel.text=[NSString stringWithFormat:@"Дээд оноо = %i", score];
     maxScoreLabel.textAlignment=NSTextAlignmentCenter;
     playAgain=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     playAgain.frame=CGRectMake(0, 160, DISPLAY_W, 50);
-    [playAgain setTitle:@"Play again" forState:UIControlStateNormal];
+    [playAgain setTitle:@"Дахин тоглох" forState:UIControlStateNormal];
     [playAgain addTarget:self action:@selector(playAgain:) forControlEvents:UIControlEventTouchUpInside];
     
     playerScore=[[UILabel alloc] initWithFrame:CGRectMake(0, 100, DISPLAY_W, 50)];
@@ -159,15 +159,15 @@
     else
     {
         time-=1;
-        timerLabel.text=[NSString stringWithFormat:@"Time %i", time];
+        timerLabel.text=[NSString stringWithFormat:@"Хугацаа: %i секунд", time];
     }
 
 }
 -(void)finishGame
 {
     [[gameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    maxScoreLabel.text=[NSString stringWithFormat:@"Max score = %i", score];
-    playerScore.text=[NSString stringWithFormat:@"Your score = %i", score];
+    maxScoreLabel.text=[NSString stringWithFormat:@"Дээд оноо = %i", score];
+    playerScore.text=[NSString stringWithFormat:@"Таны оноо = %i", score];
     [timer invalidate];
     isGameRunning=false;
     isObjectSelected=false;
@@ -181,8 +181,8 @@
 {
     score=0;
     time=default_time;
-    timerLabel.text=[NSString stringWithFormat:@"Time %i", time];
-    scoreLabel.text=[NSString stringWithFormat:@"Score = %i", score];
+    timerLabel.text=[NSString stringWithFormat:@"Хугацаа: %i секунд", time];
+    scoreLabel.text=[NSString stringWithFormat:@"Оноо = %i", score];
     isGameRunning=true;
     [UIView transitionFromView:finishView toView:gameView duration:0.5f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
         [self createGameViews];
@@ -261,7 +261,7 @@
                             [self finishGame];
                             NSLog(@"Game Finished");
                         }
-                        scoreLabel.text=[NSString stringWithFormat:@"Score = %i", score];
+                        scoreLabel.text=[NSString stringWithFormat:@"Оноо = %i", score];
                         tryCount=0;
                         toView.hidden=YES;
                         selectedView.hidden=YES;

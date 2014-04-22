@@ -40,13 +40,13 @@
     
     UIButton *playButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     playButton.frame=CGRectMake((DISPLAY_W-PLAY_W)/2, ((DISPLAY_H-STATUS_BAR_H)/2-PLAY_H-DISTANCE_H/2), PLAY_W, PLAY_H);
-    [playButton setTitle:@"Play" forState:UIControlStateNormal];
+    [playButton setTitle:@"Тоглох" forState:UIControlStateNormal];
     [playButton addTarget:self action:@selector(playClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:playButton];
     
     UIButton *scoreButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     scoreButton.frame=CGRectMake((DISPLAY_W-PLAY_W)/2, ((DISPLAY_H-STATUS_BAR_H)/2+DISTANCE_H/2), PLAY_W, PLAY_H);
-    [scoreButton setTitle:@"Scores" forState:UIControlStateNormal];
+    [scoreButton setTitle:@"Оноонууд" forState:UIControlStateNormal];
     [scoreButton addTarget:self action:@selector(scoresClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *infoButton=[UIButton buttonWithType:UIButtonTypeInfoDark];
@@ -61,9 +61,9 @@
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 7, DISPLAY_W, 30)];
     titleLabel.text=@"Memory";
     titleLabel.textAlignment=NSTextAlignmentCenter;
-    
+    titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:18];
     [titleView addSubview:titleLabel];
-    [backgroundView addSubview:settingsButton];
+//    [backgroundView addSubview:settingsButton];
     [backgroundView addSubview:infoButton];
     [backgroundView addSubview:playButton];
     [backgroundView addSubview:scoreButton];
@@ -77,11 +77,11 @@
 }
 -(void)scoresClicked:(id)sender
 {
-    NSLog(@"scores");
+    [self presentViewController:[[ScoreScreen alloc] init] animated:YES completion:nil];
 }
 -(void)infoClicked:(id)sender
 {
-    NSLog(@"info");
+    [self presentViewController:[[InformationView alloc] init] animated:YES completion:nil];
 }
 -(void)settingsClicked:(id)sender
 {
