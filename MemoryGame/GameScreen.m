@@ -39,7 +39,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    default_time=5;
+    default_time=60;
     time=default_time;
     score=0;
     lastSelectedTag=0;
@@ -275,7 +275,7 @@
             container.tag=tag_index;
             UIButton *btn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
             btn.frame=CGRectMake(0, 0, shape_size, shape_size);
-            [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateNormal];
+//            [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateNormal];
             [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateDisabled];
             btn.tag=[[[objectTagArray objectAtIndex:i] objectAtIndex:j] integerValue];
             [btn addTarget:self action:@selector(objectClicked:) forControlEvents:UIControlEventTouchUpInside];
