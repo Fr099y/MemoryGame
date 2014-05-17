@@ -10,7 +10,6 @@
 		D7029BB619012BFB00E1A0BF /* GameScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D7029BB519012BFB00E1A0BF /* GameScreen.m */; };
 		D708C49919061031007FAD3F /* InformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D708C49819061031007FAD3F /* InformationView.m */; };
 		D708C49C190621DE007FAD3F /* ScoreScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D708C49B190621DE007FAD3F /* ScoreScreen.m */; };
-		D708C49F19062FA9007FAD3F /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D708C49E19062FA9007FAD3F /* DBManager.m */; };
 		D770C9251904F18900254DCF /* object_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D770C9241904F18900254DCF /* object_background.png */; };
 		D770C9271904F2E900254DCF /* pattern-background.png in Resources */ = {isa = PBXBuildFile; fileRef = D770C9261904F2E900254DCF /* pattern-background.png */; };
 		D770C9371904F73800254DCF /* shape_01.png in Resources */ = {isa = PBXBuildFile; fileRef = D770C9281904F73800254DCF /* shape_01.png */; };
@@ -62,8 +61,6 @@
 		D708C49819061031007FAD3F /* InformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationView.m; sourceTree = "<group>"; };
 		D708C49A190621DE007FAD3F /* ScoreScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreScreen.h; sourceTree = "<group>"; };
 		D708C49B190621DE007FAD3F /* ScoreScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreScreen.m; sourceTree = "<group>"; };
-		D708C49D19062FA9007FAD3F /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
-		D708C49E19062FA9007FAD3F /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		D770C9241904F18900254DCF /* object_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = object_background.png; sourceTree = "<group>"; };
 		D770C9261904F2E900254DCF /* pattern-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pattern-background.png"; sourceTree = "<group>"; };
 		D770C9281904F73800254DCF /* shape_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape_01.png; sourceTree = "<group>"; };
@@ -171,8 +168,6 @@
 				D708C49819061031007FAD3F /* InformationView.m */,
 				D708C49A190621DE007FAD3F /* ScoreScreen.h */,
 				D708C49B190621DE007FAD3F /* ScoreScreen.m */,
-				D708C49D19062FA9007FAD3F /* DBManager.h */,
-				D708C49E19062FA9007FAD3F /* DBManager.m */,
 				D7AFD2A31900EF960069501E /* Images.xcassets */,
 				D7AFD2C41900FE7D0069501E /* images */,
 				D7AFD2981900EF960069501E /* Supporting Files */,
@@ -348,7 +343,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D708C49F19062FA9007FAD3F /* DBManager.m in Sources */,
 				D7AFD2A21900EF960069501E /* AppDelegate.m in Sources */,
 				D7029BB619012BFB00E1A0BF /* GameScreen.m in Sources */,
 				D708C49C190621DE007FAD3F /* ScoreScreen.m in Sources */,
