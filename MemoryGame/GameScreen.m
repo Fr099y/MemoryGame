@@ -39,7 +39,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    default_time=60;
+    default_time=5;
     time=default_time;
     score=0;
     lastSelectedTag=0;
@@ -163,16 +163,85 @@
     }
 
 }
+- (void)saveToFile:(int)newmax
+{
+	BOOL success;
+	NSError *error;
+	
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"data.plist"];
+	
+	success = [fileManager fileExistsAtPath:filePath];
+	if (!success) {
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
+		success = [fileManager copyItemAtPath:path toPath:filePath error:&error];
+	}
+	
+	NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    
+	// scopeType.plist File dotorx ugugdul xadgalax
+    [plistDict setValue:[NSString stringWithFormat:@"%d",newmax] forKey:@"maxscore"];
+	[plistDict writeToFile:filePath atomically: YES];
+}
+
+-(int)getMaxScore
+{
+    BOOL success;
+	NSError *error;
+	
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"data.plist"];
+	
+	success = [fileManager fileExistsAtPath:filePath];
+	if (!success) {
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
+		success = [fileManager copyItemAtPath:path toPath:filePath error:&error];
+	}
+	
+	NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    
+    NSString *maxScore = [plistDict objectForKey:@"maxscore"];
+    return [maxScore integerValue];
+}
 -(void)finishGame
 {
     [[gameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    maxScoreLabel.text=[NSString stringWithFormat:@"Дээд оноо = %i", score];
-    playerScore.text=[NSString stringWithFormat:@"Таны оноо = %i", score];
+    
+    int maxScore=[self getMaxScore];
+    if(maxScore>score)
+    {
+        maxScoreLabel.text=[NSString stringWithFormat:@"Дээд оноо = %i", maxScore];
+        playerScore.text=[NSString stringWithFormat:@"Таны оноо = %i", score];
+    }
+    else
+    {
+        maxScoreLabel.text=[NSString stringWithFormat:@"Дээд оноо = %i", score];
+        playerScore.text=[NSString stringWithFormat:@"Баяр хүргье. Шинэ дээд оноо"];
+        [self saveToFile:score];
+    }
+
     [timer invalidate];
     isGameRunning=false;
     isObjectSelected=false;
     totalAviableObject=30;
     timer=nil;
+    
+//    BOOL success = NO;
+//    NSString *alertString = @"Data Insertion failed";
+//
+//    success = [[DBManager getSharedInstance]saveData:@"Fr099y" score:score];
+//
+//    if (success == NO) {
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:
+//                              alertString message:nil
+//                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//    }
+    
     [UIView transitionFromView:gameView toView:finishView duration:0.5f options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
         
     }];
@@ -206,7 +275,7 @@
             container.tag=tag_index;
             UIButton *btn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
             btn.frame=CGRectMake(0, 0, shape_size, shape_size);
-//            [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateNormal];
+            [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateNormal];
             [btn setTitle:[[[objectTagArray objectAtIndex:i] objectAtIndex:j] stringValue] forState:UIControlStateDisabled];
             btn.tag=[[[objectTagArray objectAtIndex:i] objectAtIndex:j] integerValue];
             [btn addTarget:self action:@selector(objectClicked:) forControlEvents:UIControlEventTouchUpInside];

@@ -17,6 +17,7 @@
     #import "GameScreen.h"
     #import "InformationView.h"
     #import "ScoreScreen.h"
+    #import "DBManager.h"
 #endif
 
 #define DISPLAY_W 320
